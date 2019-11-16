@@ -6,15 +6,16 @@ const TokenStream = require('./token_stream');
 const CompileError = require('./compile_error');
 
 // TODO: Implement subroutines when I wake up
-
 const createMemoryWriter = memory => {
   let i = 0;
   return (val) => memory[i++] = val;
 }
 
+const trim = code => code.toLowerCase().replace(/\s+/g, '');
+
 function compileAssembly(memory, filepath) {
   const code = fs.readFileSync(filepath, 'utf8');
-  const input = new InputStream(code);
+  const input = new InputStream(trim(code));
   const tokens = new TokenStream(input);
 
   const memoryWrite = createMemoryWriter(memory);
@@ -153,6 +154,28 @@ function compileAssembly(memory, filepath) {
     throw new CompileError('Wrong type of parameters passed to', 'POP');
   };
 
+  const cal = () => {
+    const param = tokens.next();
+    const paramType = param.type;
+
+    if (param1Type === 'mem_addr') {
+      write(instructions.CAL_LIT);
+      writeHex(param.value);
+      return;
+    }
+
+    if (param1Type === 'reg') {
+      write(instructions.CAL_REG);
+      writeRegister(param.value);
+      return;
+    }
+  };
+
+  const ret = () => {
+    write(instructions.RET);
+    return;
+  };
+
   while (!tokens.eof()) {
     const token = tokens.next();
     if (token.type === 'instruction') {
@@ -162,6 +185,8 @@ function compileAssembly(memory, filepath) {
       if (instruction === 'jne') jne();
       if (instruction === 'psh') psh();
       if (instruction === 'pop') pop();
+      if (instruction === 'cal') cal();
+      if (instruction === 'ret') ret();
     }
   }
 }

@@ -8,8 +8,8 @@ const writableBytes = new Uint8Array(memory.buffer);
 // VM's heart
 const cpu = new CPU(memory, {
   debug: true,
-  addressesToObserve: [0x0100, 0xffff - 1 - 6],
+  addressesToObserve: [0x0100, 0xfff8],
 });
 
-compile(writableBytes, 'programs/comment_1.asm');
+compile(writableBytes, 'programs/jne_1.asm');
 cpu.run();

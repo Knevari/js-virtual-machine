@@ -223,7 +223,6 @@ class CPU {
         return;
       }
     }
-
     return 1;
   }
 
@@ -241,7 +240,7 @@ class CPU {
       const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
-        prompt: 'Next Command > ',
+        prompt: '(step | hexdump | run | exit) > ',
       });
 
       rl.prompt();
@@ -254,7 +253,7 @@ class CPU {
           this.debug();
         };
 
-        if (command === 'dump') this.debug();
+        if (command === 'hexdump') this.debug();
         if (command === 'exit') process.exit(0);
         if (command === 'run') this.runCompleteProgram(this.debug.bind(this));
 

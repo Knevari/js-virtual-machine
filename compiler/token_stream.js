@@ -53,9 +53,7 @@ class TokenStream {
   }
 
   skipComment() {
-    const nextSemiColon = this.input.next();
-    if (nextSemiColon !== ';') this.throw();
-    else this.readWhile((char) => !isNewline(char));
+    this.readWhile((char) => !isNewline(char));
     return this.readNext();
   }
 
