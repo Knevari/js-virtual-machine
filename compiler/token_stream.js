@@ -1,6 +1,6 @@
 const InputStream = require('./input_stream');
 
-const mnemonics = ['mov', 'psh', 'add', 'pop', 'jne'];
+const mnemonics = ['mov', 'psh', 'add', 'pop', 'jne', 'cal', 'ret'];
 const registers = ['ip', 'acc', 'r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r6', 'r8', 'sp', 'fp'];
 
 const isHex = value => /[0-9a-fA-F]+/i.test(value);
