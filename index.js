@@ -11,5 +11,5 @@ const cpu = new CPU(memory, {
   addressesToObserve: [0x0100, 0xffff - 1 - 6],
 });
 
-compile(writableBytes, 'programs/psh_n_pop_1.asm');
+compile(writableBytes, 'programs/comment_1.asm');
 cpu.run();

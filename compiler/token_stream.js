@@ -53,8 +53,8 @@ class TokenStream {
   }
 
   skipComment() {
-    const nextSlash = this.input.next();
-    if (nextSlash !== '/') this.throw();
+    const nextSemiColon = this.input.next();
+    if (nextSemiColon !== ';') this.throw();
     else this.readWhile((char) => !isNewline(char));
     return this.readNext();
   }
@@ -63,7 +63,7 @@ class TokenStream {
     this.readWhile(isWhitespace);
     if (this.input.eof()) return null;
     const char = this.input.peek();
-    if (char === '/') return this.skipComment();
+    if (char === ';') return this.skipComment();
     if (char === '$') return this.readHex();
     if (char === '#') return this.readMemoryAddress();
     if (isIdentifier(char)) return this.readIdentifier();

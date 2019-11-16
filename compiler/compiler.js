@@ -5,6 +5,8 @@ const InputStream = require('./input_stream');
 const TokenStream = require('./token_stream');
 const CompileError = require('./compile_error');
 
+// TODO: Implement subroutines when I wake up
+
 const createMemoryWriter = memory => {
   let i = 0;
   return (val) => memory[i++] = val;

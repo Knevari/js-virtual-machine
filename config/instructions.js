@@ -5,8 +5,11 @@ module.exports = {
   MOV_MEM_REG: 0X13,
   MOV_LIT_MEM: 0x14,
   ADD_REG_REG: 0x15,
-  JMP_NOT_EQ: 0x16,
-  PSH_LIT: 0x17,
-  PSH_REG: 0x18,
-  POP: 0x1A
+  JMP_NOT_EQ: 0x17,
+  PSH_LIT: 0x18,
+  PSH_REG: 0x1A,
+  POP: 0x1C,
+  CAL_LIT: 0x5E,
+  CAL_REG: 0x5F,
+  RET: 0x60,
 }
